@@ -1,0 +1,20 @@
+﻿
+@model List<Session>
+
+<h1>All Sessions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var session in Model)
+        {
+            @await Html.PartialAsync("_SessionPartial", session)
+        }
+    </tbody>
+</table>

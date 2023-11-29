@@ -17,7 +17,13 @@ namespace BirdCounting.UI.mvc.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var sessions = _birdService.GetSessions(); 
+            return View(sessions);
+        }
+
+        public IActionResult RedirectToHomeIndex()
+        {
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Privacy()

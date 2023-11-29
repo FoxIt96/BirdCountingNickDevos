@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using BirdCounting.Model;
-using System;
 
 namespace BirdCounting.Core
 {
@@ -10,6 +9,7 @@ namespace BirdCounting.Core
         {
         }
         public DbSet<Bird> Birds => Set<Bird>();
+        public DbSet<Session> Sessions { get; set; }
 
         public void Seed()
         {

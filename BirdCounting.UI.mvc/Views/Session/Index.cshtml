@@ -1,0 +1,23 @@
+﻿@model List<Session>
+
+<h1>All Sessions</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var session in Model)
+        {
+            <tr>
+                <td>@session.StartTime</td>
+                <td>@session.EndTime</td>
+                <td>@session.Location</td>
+            </tr>
+        }
+    </tbody>
+</table>

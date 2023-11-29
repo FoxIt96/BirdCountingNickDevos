@@ -1,6 +1,7 @@
 ﻿using BirdCounting.Core;
 using BirdCounting.Model;
 using System;
+using static System.Collections.Specialized.BitVector32;
 
 namespace BirdCounting.Services
 {
@@ -57,12 +58,28 @@ namespace BirdCounting.Services
 
             if (dbBird is null)
             {
-                return ;
+                return;
             }
 
             _dbContext.Birds.Remove(dbBird);
 
             _dbContext.SaveChanges();
         }
+
+        public List<Session> GetSessions()
+        {
+
+            return _dbContext.Sessions.ToList();
+        }
+
+        public Session? CreateSession(Session session)
+        {
+
+            _dbContext.Sessions.Add(session);
+            _dbContext.SaveChanges();
+
+            return session;
+        }
+
     }
 }
