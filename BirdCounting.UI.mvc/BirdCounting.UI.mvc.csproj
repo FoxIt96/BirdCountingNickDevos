@@ -7,10 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BirdCounting.Core\BirdCounting.Core.csproj" />
     <ProjectReference Include="..\BirdCounting.Model\BirdCounting.Model.csproj" />
     <ProjectReference Include="..\BirdCounting.Services\BirdCounting.Services.csproj" />
   </ItemGroup>

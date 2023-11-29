@@ -1,16 +1,18 @@
 using BirdCounting.UI.mvc.Models;
+using BirdCounting.Services;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 
 namespace BirdCounting.UI.mvc.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly BirdService _birdService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(BirdService birdService)
         {
-            _logger = logger;
+            _birdService = birdService;
         }
 
         public IActionResult Index()
@@ -28,5 +30,6 @@ namespace BirdCounting.UI.mvc.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

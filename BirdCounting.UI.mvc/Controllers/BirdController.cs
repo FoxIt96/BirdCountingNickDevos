@@ -68,7 +68,7 @@ namespace BirdCounting.UI.mvc.Controllers
             return View(bird);
         }
 
-        [HttpPost("/people/delete/{id:int}")]
+        [HttpPost("/bird/delete/{id:int}")]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed([FromRoute] int id)
         {

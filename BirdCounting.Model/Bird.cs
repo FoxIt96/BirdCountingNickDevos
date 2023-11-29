@@ -1,5 +1,10 @@
-﻿namespace BirdCounting.Model
+﻿
+using System.ComponentModel.DataAnnotations.Schema;
+using System;
+
+namespace BirdCounting.Model
 {
+    [Table(nameof(Bird))]
     public class Bird
     {
         public int Id { get; set; }

@@ -1,0 +1,14 @@
+﻿@model Bird
+<tr>
+    <td>@Model.Name</td>
+    <td>@Model.Description</td>
+    <td>@Model.PhotoUrl</td>
+    <td>
+        <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@Model.Id">
+            Edit
+        </a>
+        <a class="btn btn-warning" asp-action="Delete" asp-route-id="@Model.Id">
+            Delete
+        </a>
+    </td>
+</tr>

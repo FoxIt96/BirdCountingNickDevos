@@ -27,7 +27,7 @@ namespace BirdCounting.Services
 
         public Bird? Create(Bird bird)
         {
-            _dbContext.People.Add(bird);
+            _dbContext.Birds.Add(bird);
             _dbContext.SaveChanges();
 
             return bird;
@@ -57,10 +57,10 @@ namespace BirdCounting.Services
 
             if (dbBird is null)
             {
-                return;
+                return ;
             }
 
-            _dbContext.People.Remove(dbBird);
+            _dbContext.Birds.Remove(dbBird);
 
             _dbContext.SaveChanges();
         }
