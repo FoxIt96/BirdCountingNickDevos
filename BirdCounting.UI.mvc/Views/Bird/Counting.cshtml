@@ -1,0 +1,50 @@
+﻿@model List<Bird>
+
+@{
+    ViewData["Title"] = "Counting";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Count</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bird in Model)
+        {
+            <tr>
+                <td><img src="@bird.PhotoUrl" alt="@bird.Name" width="50" height="50" /></td>
+                <td>@bird.Name</td>
+                <td>@bird.Description</td>
+                <td>@bird.Count</td>
+                <td>
+                    <form asp-action="Count" asp-controller="Bird" method="post">
+                        <input type="hidden" name="birdId" value="@bird.Id" />
+                        <button type="submit" class="btn btn-success">Count +1</button>
+                    </form>
+
+                    <form asp-action="CorrectCount" asp-controller="Bird" method="post">
+                        <input type="hidden" name="birdId" value="@bird.Id" />
+                        <button type="submit" class="btn btn-danger">Correct -1</button>
+                    </form>
+                </td>
+            </tr>
+            
+        }
+    </tbody>
+    <tr>
+        <td colspan="5">
+            <form asp-action="StopSession" asp-controller="Bird" method="post">
+                <input type="hidden" name="sessionId" value="@ViewData["SessionId"]" />
+                <button type="submit" class="btn btn-danger">Stop Session</button>
+            </form>
+        </td>
+    </tr>
+</table>

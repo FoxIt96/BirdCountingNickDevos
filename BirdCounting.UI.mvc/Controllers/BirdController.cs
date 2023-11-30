@@ -76,5 +76,43 @@ namespace BirdCounting.UI.mvc.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Counting()
+        {
+            // Retrieve the list of birds sorted by frequency (implement this in your service)
+            var sessionId = _birdService.GetCurrentSessionId();
+            var birds = _birdService.GetBirdsSortedByFrequency();
+
+             ViewData["SessionId"] = sessionId;
+            return View(birds);
+        }
+
+        [HttpPost]
+        public IActionResult Count(int birdId)
+        {
+            // Implement logic to increase the count for the bird with birdId
+            _birdService.CountBird(birdId, 1);
+
+            // Redirect back to the counting page
+            return RedirectToAction("Counting");
+        }
+
+        [HttpPost]
+        public IActionResult CorrectCount(int birdId)
+        {
+            // Implement logic to decrease the count for the bird with birdId
+            _birdService.CountBird(birdId, -1);
+
+            // Redirect back to the counting page
+            return RedirectToAction("Counting");
+        }
+        [HttpPost]
+        public IActionResult StopSession(int sessionId)
+        {
+            _birdService.StopSession(sessionId);
+
+            // Redirect back to the counting page
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

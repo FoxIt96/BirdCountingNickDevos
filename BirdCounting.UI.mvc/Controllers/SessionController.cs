@@ -13,7 +13,6 @@ namespace BirdCounting.UI.mvc.Controllers
             _birdService = birdService;
         }
 
-
         [HttpGet]
         public IActionResult CreateSession()
         {
@@ -31,7 +30,8 @@ namespace BirdCounting.UI.mvc.Controllers
 
             _birdService.CreateSession(session);
 
-            return RedirectToAction("AllSessions");
+            // Redirect to the counting page
+            return RedirectToAction("Counting", "Bird");
         }
 
         [HttpGet]
@@ -40,5 +40,8 @@ namespace BirdCounting.UI.mvc.Controllers
             return RedirectToAction("Index", "Home");
         }
     }
+
+
+
 
 }

@@ -5,4 +5,8 @@
     <td>@Model.EndTime</td>
     <td>@Model.Location</td>
     <a class="btn btn-info" href="@Url.Action("SessionDetails", "Home", new { id = Model.Id })">Details</a>
+    @if (Model.IsActive)
+    {
+        <a class="btn btn-primary" asp-action="Counting" asp-controller="Bird">Go to Counting Page</a>
+    }
 </tr>

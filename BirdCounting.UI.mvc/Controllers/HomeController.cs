@@ -17,8 +17,11 @@ namespace BirdCounting.UI.mvc.Controllers
         public IActionResult Index()
         {
             var sessions = _birdService.GetSessions();
+            var activeSession = _birdService.GetCurrentActiveSession();
+            ViewData["ActiveSession"] = activeSession;
             return View(sessions);
         }
+
 
         public IActionResult RedirectToHomeIndex()
         {
@@ -38,6 +41,7 @@ namespace BirdCounting.UI.mvc.Controllers
                 return NotFound(); // Of een andere actie afhankelijk van je behoeften
             }
 
+
             return View(session);
         }
 
@@ -45,6 +49,11 @@ namespace BirdCounting.UI.mvc.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Counting()
+        {
+            return View();
         }
     }
 }
