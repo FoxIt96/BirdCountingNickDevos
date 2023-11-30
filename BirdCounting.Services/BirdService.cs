@@ -81,5 +81,10 @@ namespace BirdCounting.Services
             return session;
         }
 
+        public Session GetSessionDetails(int id)
+        {
+            return _dbContext.Sessions.FirstOrDefault(s => s.Id == id);
+        }
+
     }
 }

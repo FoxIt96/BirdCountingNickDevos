@@ -1,7 +1,6 @@
-using BirdCounting.UI.mvc.Models;
 using BirdCounting.Services;
+using BirdCounting.UI.mvc.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Diagnostics;
 
 namespace BirdCounting.UI.mvc.Controllers
@@ -17,7 +16,7 @@ namespace BirdCounting.UI.mvc.Controllers
 
         public IActionResult Index()
         {
-            var sessions = _birdService.GetSessions(); 
+            var sessions = _birdService.GetSessions();
             return View(sessions);
         }
 
@@ -31,11 +30,21 @@ namespace BirdCounting.UI.mvc.Controllers
             return View();
         }
 
+        public IActionResult SessionDetails(int id)
+        {
+            var session = _birdService.GetSessionDetails(id);
+            if (session == null)
+            {
+                return NotFound(); // Of een andere actie afhankelijk van je behoeften
+            }
+
+            return View(session);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
     }
 }

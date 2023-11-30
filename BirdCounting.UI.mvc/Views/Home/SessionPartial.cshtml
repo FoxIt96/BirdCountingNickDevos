@@ -4,4 +4,5 @@
     <td>@Model.StartTime</td>
     <td>@Model.EndTime</td>
     <td>@Model.Location</td>
+    <a class="btn btn-info" href="@Url.Action("SessionDetails", "Home", new { id = Model.Id })">Details</a>
 </tr>
