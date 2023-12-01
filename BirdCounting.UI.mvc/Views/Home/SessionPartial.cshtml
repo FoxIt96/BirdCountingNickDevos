@@ -4,9 +4,15 @@
     <td>@Model.StartTime</td>
     <td>@Model.EndTime</td>
     <td>@Model.Location</td>
-    <a class="btn btn-info" href="@Url.Action("SessionDetails", "Home", new { id = Model.Id })">Details</a>
-    @if (Model.IsActive)
-    {
-        <a class="btn btn-primary" asp-action="Counting" asp-controller="Bird">Go to Counting Page</a>
-    }
+    <td>
+        <a class="btn btn-info" href="@Url.Action("SessionDetails", "Home", new { id = Model.Id })">Details</a>
+        @if (Model.IsActive)
+        {
+            <a class="btn btn-primary" asp-action="Counting" asp-controller="Bird">Go to Counting Page</a>
+        }
+        <form method="post" asp-action="DeleteSession" asp-controller="Session">
+            <input type="hidden" name="id" value="@Model.Id" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </td>
 </tr>

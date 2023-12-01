@@ -39,9 +39,15 @@ namespace BirdCounting.UI.mvc.Controllers
         {
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteSession(int id)
+        {
+            _birdService.DeleteSession(id);
+
+            // Redirect terug naar de lijst van sessies
+            return RedirectToAction("Index", "Home");
+        }
     }
-
-
-
-
 }

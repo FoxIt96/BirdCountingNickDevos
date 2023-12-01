@@ -143,5 +143,16 @@ namespace BirdCounting.Services
             return _dbContext.Sessions.FirstOrDefault(s => s.IsActive);
         }
 
+        public void DeleteSession(int sessionId)
+        {
+            var session = _dbContext.Sessions.FirstOrDefault(s => s.Id == sessionId);
+
+            if (session != null)
+            {
+                _dbContext.Sessions.Remove(session);
+                _dbContext.SaveChanges();
+            }
+        }
+
     }
 }
