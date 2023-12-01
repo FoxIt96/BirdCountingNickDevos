@@ -36,14 +36,15 @@ namespace BirdCounting.UI.mvc.Controllers
         public IActionResult SessionDetails(int id)
         {
             var session = _birdService.GetSessionDetails(id);
+            // Add a breakpoint here and inspect the 'session' object in debug mode.
             if (session == null)
             {
-                return NotFound(); // Of een andere actie afhankelijk van je behoeften
+                return NotFound(); // Or handle as needed
             }
-
 
             return View(session);
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

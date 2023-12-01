@@ -16,5 +16,14 @@
             <th>Count</th>
         </tr>
     </thead>
-   
-</table>
+    <tbody>
+        @foreach (var bird in Model.Birds)
+        {
+            <tr>
+                <td><img src="@bird.PhotoUrl" alt="@bird.Name" width="100" height="100" /></td>
+                <td>@bird.Name</td>
+                <td>@bird.Description</td>
+                <td>@bird.Count</td>
+            </tr>
+        }
+    </tbody>

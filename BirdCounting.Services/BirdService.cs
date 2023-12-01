@@ -1,5 +1,6 @@
 ﻿using BirdCounting.Core;
 using BirdCounting.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using static System.Collections.Specialized.BitVector32;
 
@@ -80,16 +81,21 @@ namespace BirdCounting.Services
         public Session? CreateSession(Session session)
         {
             session.IsActive = true;
+            session.Birds = _dbContext.Birds.ToList(); // Load birds for the session
             _dbContext.Sessions.Add(session);
             _dbContext.SaveChanges();
 
             return session;
         }
 
+
         public Session GetSessionDetails(int id)
         {
-            return _dbContext.Sessions.FirstOrDefault(s => s.Id == id);
+            return _dbContext.Sessions
+                .Include(s => s.Birds) // Include birds related to the session
+                .FirstOrDefault(s => s.Id == id);
         }
+
 
         public void StopSession(int sessionId)
         {

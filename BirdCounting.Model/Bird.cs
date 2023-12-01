@@ -13,6 +13,10 @@ namespace BirdCounting.Model
         public string PhotoUrl { get; set; }
 
         public int Count { get; set; }
+        // Add SessionId property
+        public int SessionId { get; set; }
 
+        // Navigation property for the Session
+        public Session Session { get; set; }
     }
 }

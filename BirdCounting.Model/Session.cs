@@ -8,6 +8,6 @@ namespace BirdCounting.Model
         public DateTime EndTime { get; set; }
         public string Location { get; set; }
         public bool IsActive { get; set; } // Add this property
-      
+        public List<Bird> Birds { get; set; } = new List<Bird>();
     }
 }
