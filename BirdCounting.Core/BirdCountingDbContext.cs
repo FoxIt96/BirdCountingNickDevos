@@ -31,7 +31,7 @@ namespace BirdCounting.Core
                 StartTime = DateTime.Now,
                 EndTime = DateTime.Now.AddHours(1),
                 Location = "Sample Location",
-                IsActive = true
+                IsActive = false
             };
 
             Sessions.Add(session);
@@ -39,7 +39,8 @@ namespace BirdCounting.Core
             Birds.AddRange(new List<Bird>
             {
                 new Bird { Name = "Boomkruiper", Description = "De boomkruiper is een kleine vogel, die met schokjes langs boomschors naar omhoog klautert, op zoek naar insecten en spinnen.", PhotoUrl = "/Images/Boomkruiper.jpg", SessionId = session.Id },
-                new Bird { Name = "Gaai", Description = "De gaai is een luidruchtige, bont gekleurde vogel met een opvallend witte stuit en een lichtblauw vleugelveld. Hij legt een wintervoorraad aan van eikels.\r\n", PhotoUrl = "/Images/Gaai.jpg", SessionId = session.Id },
+                new Bird { Name = "Gaai", Description = "De gaai is een luidruchtige, bont gekleurde vogel met een opvallend witte stuit en een lichtblauw vleugelveld. Hij legt een wintervoorraad aan van eikels.", PhotoUrl = "/Images/Gaai.jpg", SessionId = session.Id },
+                new Bird { Name = "Ekster", Description = "De ekster is met zijn zwart-wit verenkleed en zeer lange, groenglanzende staart een onmiskenbare vogel. De ekster bouwt vaak overdekte nesten.", PhotoUrl = "/Images/Ekster.jpg", SessionId = session.Id },
             });
 
             SaveChanges();

@@ -43,8 +43,13 @@ namespace BirdCounting.UI.mvc.Controllers
         [HttpGet]
         public IActionResult Edit([FromRoute] int id)
         {
-            var person = _birdService.Get(id);
-            return View(person);
+            var bird = _birdService.Get(id);
+            if (bird == null)
+            {
+                return NotFound();
+            }
+
+            return View(bird);
         }
 
         [HttpPost]
@@ -56,7 +61,11 @@ namespace BirdCounting.UI.mvc.Controllers
                 return View(bird);
             }
 
-            _birdService.Update(id, bird);
+            var updatedBird = _birdService.Update(id, bird);
+            if (updatedBird == null)
+            {
+                return NotFound();
+            }
 
             return RedirectToAction("Index");
         }
@@ -65,17 +74,29 @@ namespace BirdCounting.UI.mvc.Controllers
         public IActionResult Delete([FromRoute] int id)
         {
             var bird = _birdService.Get(id);
+            if (bird == null)
+            {
+                return NotFound();
+            }
+
             return View(bird);
         }
 
-        [HttpPost("/bird/delete/{id:int}")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirmed([FromRoute] int id)
         {
+            var bird = _birdService.Get(id);
+            if (bird == null)
+            {
+                return NotFound();
+            }
+
             _birdService.Delete(id);
 
             return RedirectToAction("Index");
         }
+
 
         public IActionResult Counting()
         {

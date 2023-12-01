@@ -1,25 +1,61 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<div class="text-center">
+    <h1 class="display-4">Welcome to Bird Counting</h1>
+    <p>Explore and track the fascinating world of birds in your area.</p>
+    <p>Ready to start counting? </p>
+</div>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <a class="btn btn-success btn-lg" href="@Url.Action("CreateSession", "Session")">Start Bird Counting</a>
 </div>
-<div class="text-center">
-    <a class="btn btn-primary" href="@Url.Action("CreateSession", "Session")">Start New Session</a>
-</div>
+
 
 <h2>All Sessions</h2>
 
 <div class="row">
-    @if (Model != null)
+    @if (Model != null && Model.Count > 0)
     {
-        foreach (var session in Model)
-        {
-            <div class="col-4">
-                <partial name="SessionPartial" model="session" />
-            </div>
-        }
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Start Time</th>
+                    <th scope="col">End Time</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.Count; i++)
+                {
+                    var session = Model[i];
+                    <tr>
+                        <th scope="row">@(i + 1)</th>
+                        <td>@session.StartTime</td>
+                        <td>@session.EndTime</td>
+                        <td>@session.Location</td>
+                        <td>
+                            <a href="@Url.Action("SessionDetails", "Home", new { id = session.Id })" class="btn btn-info">Details</a>
+                            @if (session.IsActive)
+                            {
+                                <a href="@Url.Action("Counting", "Bird")" class="btn btn-primary">Go to Counting Page</a>
+                            }
+                            <form method="post" asp-action="DeleteSession" asp-controller="Session" class="d-inline">
+                                <input type="hidden" name="id" value="@session.Id" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     }
+    else
+    {
+        <p>No sessions available.</p>
+    }
+
+
 </div>
