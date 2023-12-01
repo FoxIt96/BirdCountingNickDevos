@@ -15,8 +15,8 @@ namespace BirdCounting.Core
         {
             Birds.AddRange(new List<Bird>
             {
-                new Bird { Name = "John", Description = "Doe", PhotoUrl = "john.doe@example.com" },
-                new Bird { Name = "Jane", Description = "Smith", PhotoUrl = "gfgffg" },
+                new Bird { Name = "Boomkruiper", Description = "De boomkruiper is een kleine vogel, die met schokjes langs boomschors naar omhoog klautert, op zoek naar insecten en spinnen.", PhotoUrl = "/Images/Boomkruiper.jpg" },
+                new Bird { Name = "Gaai", Description = "De gaai is een luidruchtige, bont gekleurde vogel met een opvallend witte stuit en een lichtblauw vleugelveld. Hij legt een wintervoorraad aan van eikels.\r\n", PhotoUrl = "/Images/Gaai.jpg" },
             });
 
             SaveChanges();

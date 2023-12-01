@@ -1,8 +1,9 @@
 ﻿@model Bird
+
 <tr>
     <td>@Model.Name</td>
     <td>@Model.Description</td>
-    <td>@Model.PhotoUrl</td>
+    <td><img src="@Model.PhotoUrl" alt="@Model.Name" width="100" height="100" /></td>
     <td>
         <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@Model.Id">
             Edit
