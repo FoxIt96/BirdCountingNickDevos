@@ -30,15 +30,13 @@ namespace BirdCounting.UI.mvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Bird bird)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(bird);
-            }
-
+      
             _birdService.Create(bird);
 
             return RedirectToAction("Index");
         }
+
+
 
         [HttpGet]
         public IActionResult Edit([FromRoute] int id)
@@ -56,10 +54,7 @@ namespace BirdCounting.UI.mvc.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit([FromRoute] int id, Bird bird)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(bird);
-            }
+           
 
             var updatedBird = _birdService.Update(id, bird);
             if (updatedBird == null)
@@ -84,18 +79,24 @@ namespace BirdCounting.UI.mvc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed([FromRoute] int id)
+        public IActionResult DeleteConfirmed(int id)
         {
+            Console.WriteLine($"Deleting bird with ID: {id}");
+
             var bird = _birdService.Get(id);
             if (bird == null)
             {
+                Console.WriteLine($"Bird not found with ID: {id}");
                 return NotFound();
             }
 
             _birdService.Delete(id);
 
+            Console.WriteLine($"Deleted bird with ID: {id}");
+
             return RedirectToAction("Index");
         }
+
 
 
         public IActionResult Counting()
